@@ -55,6 +55,8 @@ def salvar_planilha(df, arquivo_excel):
 # Carrega a planilha
 df, arquivo_excel = carregar_planilha()
 
+df["Material"] = df["Material"].str.strip()
+
 # Layout em colunas
 
 col1, col2 = st.columns(2)
@@ -244,6 +246,7 @@ with st.sidebar:
         top_materiais = df.groupby('Material')['Quantidade'].sum().nlargest(5)
         for material, qtd in top_materiais.items():
             st.write(f"- {material}: {qtd} unidades")
+
 
 
 
