@@ -74,7 +74,13 @@ with col1:
                 "Governança", "Processos e Qualidade", "Tesouraria", "Be Civis", "Cordenação Back Office"]
     )
             
-        material = st.text_input("Material:", max_chars=100)
+        material = st.selectbox("Material:",["Pilha AA","Pilha AAA","Saco Plástico PP 240mm X 320mm: 50 unidades", "RESMA DE PAPEL A4 - 500FLS","Post-it Pequeno","Post-It Grande","Caderno","Caneta Azul","Caneta Preta","Caneta Vermelha","Caneta Colorida","Agenda","Lápis",
+                                            "Borracha","Apontador","Marca-Texto","Lapizeira","Grafite","Corretivo","Clip","Pilha C","Grampo","Grampeador","Apoio de Pé","Apoio de Notebook","Papel Timbrado","COLA EM BASTAO 40G","TESOUSA",
+                                            "CURATIVO - JOELHO","CURATIVO TRANSPARENTE","FITA CREPE - 12mmX30M","Álcool em Gel 50g","Extrator de Grampo Galvanizado","Envelope Personalizado","Envelope A4 Saco Kraf Pardo 240x340 cm",
+                                            "APOIO/SUPORTE DE MONITOR","Cartão Presente - SPOTIFY PREMIUM","Etiqueta Adesiva A4 350 - 100 Folhas - 3000 Etiq.","AGUA COM GAS","ÁGUA MINERAL 250ML","REDBUD - ZERO", "LEITE", "REFRIGERANTE - SCHWEPPES",
+                                            "CERVEJA","REFRIGERANTE COCA-COLA 310ML","REFRIGERANTE COCA-COLA ZERO 220ML","REFRIGERANTE COCA-COLA ZERO 310ML","REFRIGERANTE FANTA UVA","REFRIGERANTE GUARANA 350ML","SUCO 290ML","PAPEL TIMBRADO","PAPEL TOALHA","MÁSCARA",
+                                            "REABASTECEDOR PARA PINCEL DE QUADRO BRANCO - PRETO","REABASTECEDOR PARA PINCEL DE QUADRO BRANCO - AZUL","REABASTECEDOR PARA PINCEL DE QUADRO BRANCO - VERMELHO","MINI-GRAMPEADOR GENMES P/25FLS CORES DIVERSAS","PASTA PLASTICA EM L PP 0,15 A4 - TRANSPARENTE","FITA ADESIVA PP 12MMX30M DUREX HB0041744262 3M PT 10 UM",
+                                            "FITA CREPE - 12mmX30M","FITA DUPLA FACE 3M SCOTCH FIXA FORTE FIXAÇÃO EXTREMA - 24mm x 2"])
             
         quantidade = st.number_input("Quantidade:", min_value=1, max_value=1000, step=1, value=1)
             
@@ -204,7 +210,40 @@ if not df.empty:
         use_container_width=True,
         hide_index=True
     )
+    indices_para_excluir = []
+    for idx, row in df_filtrado.iterrows():
+        col1, col2, col3, col4, col5 = st.columns([1, 3, 3, 2, 2])
+        with col1:
+            excluir = st.checkbox("Excluir", key=f"excluir_{idx}")
+        with col2:
+            st.write(row['Nome do colaborador'])
+        with col3:
+            st.write(row['Material'])
+        with col4:
+            st.write(row['Setor'])
+        with col5:
+            st.write(f"{row['Quantidade']} unid.")
+        
+        if excluir:
+            indices_para_excluir.append(idx)
     
+    # Botão para confirmar exclusão
+    if indices_para_excluir:
+        if st.button("🗑️ Excluir Registros Selecionados", type="primary"):
+            # Remove os registros selecionados
+            df = df.drop(indices_para_excluir).reset_index(drop=True)
+            salvar_planilha(df, arquivo_excel)
+            st.success(f"✅ {len(indices_para_excluir)} registro(s) excluído(s) com sucesso!")
+            st.rerun()
+    
+    # Opção para baixar a planilha
+    with open(arquivo_excel, "rb") as file:
+        st.download_button(
+            label="📥 Baixar Planilha Completa",
+            data=file,
+            file_name=arquivo_excel,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            use_container_width=True
     # Opção para baixar a planilha
     with open(arquivo_excel, "rb") as file:
         st.download_button(
@@ -246,6 +285,7 @@ with st.sidebar:
         top_materiais = df.groupby('Material')['Quantidade'].sum().nlargest(5)
         for material, qtd in top_materiais.items():
             st.write(f"- {material}: {qtd} unidades")
+
 
 
 
