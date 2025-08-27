@@ -235,15 +235,7 @@ if not df.empty:
             salvar_planilha(df, arquivo_excel)
             st.success(f"✅ {len(indices_para_excluir)} registro(s) excluído(s) com sucesso!")
             st.rerun()
-    
-    # Opção para baixar a planilha
-    with open(arquivo_excel, "rb") as file:
-        st.download_button(
-            label="📥 Baixar Planilha Completa",
-            data=file,
-            file_name=arquivo_excel,
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            use_container_width=True)
+
     # Opção para baixar a planilha
     with open(arquivo_excel, "rb") as file:
         st.download_button(
@@ -285,6 +277,7 @@ with st.sidebar:
         top_materiais = df.groupby('Material')['Quantidade'].sum().nlargest(5)
         for material, qtd in top_materiais.items():
             st.write(f"- {material}: {qtd} unidades")
+
 
 
 
