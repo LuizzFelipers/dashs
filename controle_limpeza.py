@@ -638,6 +638,8 @@ if not df.empty:
 else:
     st.info("📝 Nenhum registro encontrado. Use o formulário acima para adicionar movimentos de estoque.")
 
+df["Quantidade"] = pd.to_numeric(df["Quantidade"], errors='coerce').fillna(0).astype(int)
+
 # Sidebar com informações
 with st.sidebar:
     st.header("ℹ️ Informações do Sistema")
@@ -667,4 +669,5 @@ with st.sidebar:
         st.markdown("**🧼 Produtos Mais Retirados:**")
         top_produtos = df.groupby('Produto')['Quantidade'].sum().nlargest(5)
         for produto, qtd in top_produtos.items():
+
             st.write(f"- {produto}: {qtd} unidades")
