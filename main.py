@@ -243,7 +243,7 @@ if not df.empty:
             data=file,
             file_name=arquivo_excel,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            use_container_width=True
+            use_container_width=True)
     # Opção para baixar a planilha
     with open(arquivo_excel, "rb") as file:
         st.download_button(
@@ -285,6 +285,7 @@ with st.sidebar:
         top_materiais = df.groupby('Material')['Quantidade'].sum().nlargest(5)
         for material, qtd in top_materiais.items():
             st.write(f"- {material}: {qtd} unidades")
+
 
 
 
