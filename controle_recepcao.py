@@ -240,6 +240,33 @@ with tab3:
         st.subheader("💸**Tabela de Gastos com a Alvorada em Junho**💸")
         st.dataframe(df_alvorada_col, use_container_width=True)
 
+        st.metric("**Total Gasto com a Alvorada em Agosto**", formatar_reais(2029.72))
+        # alvorada_agosto = {"Material":
+        #                    ['Áçucar Cristal 5Kg',
+        #                    'ADOÇANTE ZERO CAL 100ML',
+        #                    'BLOQUEADOR AEROSSOL 100ML',
+        #                     'ÁLCOOL 1 LITRO',
+        #                    'COADOR CAFÉ TEXTIL BOM LAR',
+        #                   'DESIN. AZULIM 5LT',
+        #                     'DESIN.USO GERAL LYSOFORM 360ML',
+        #                     'ESPONJA D FACE TININDO 3M C/10UN',
+        #                     'DETERGENTE MINUANO 500ML',
+        #                     'LUVA FORRADA AMAR VERNIZ SLIM G',
+        #                     'LUVA FORRADA AMAR VERNIZ SLIM M',
+        #                     'MEXEDOR DRINK GDE 11 CM 240UN',
+        #                     'MULT. USO LIMPEZ ZUPP 500ML',
+        #                     'MULT. USO LIMPEZA PESADA 1LT',
+        #                     'MULT. USO GOLD VEJA 500ML',
+        #                     'PATO PURIFIC GERMINEX 500ML',
+        #                     'SACO ALVEJADO GROSSO 42X68cm',
+        #                     'SACO PTO 40 LTS',
+        #                     'SACO PTO 110L',
+        #                     'SAPONACEO CREMOSO CIF 250ML',
+        #                     'TELA DESOD. P/MIC']
+
+        #                   "Quantidade":[3,15,20,12,4,8,10,3,24,4,4,5,12,10,24,10,10,5,8,10,5],
+        #                   "Valor Total (R$)":[]}
+
     with col4:
         st.subheader("Gastos com a **Brago**")
         dados_brago = {"Material":["Papel Higiênico","Papel Toalha","Sabão Líquido 475ml","Sabão Líquido 1000ml","Álcool em Gel 1000ml"],
@@ -299,4 +326,5 @@ with tab4:
         st.metric("**Valor da Cláusula Contratual do Aluguel** (3 vezes o **Valor** do Aluguel)", formatar_reais(22500))
 
     with col3:
+
         st.metric("**Valor do Frete para Transportar os Equipamentos**", formatar_reais(23000))
