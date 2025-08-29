@@ -10,11 +10,11 @@ st.markdown("-----------------")
 
 df_geral = pd.read_excel("Registros Uber Original.xlsx", sheet_name="TOTAL")
 
-jan_fev = pd.read_excel("Registros Uber.xlsx",sheet_name="Janeiro-fevereiro")
+jan_fev = pd.read_excel("Registros Uber Original.xlsx",sheet_name="Janeiro-fevereiro")
 
-març_abril_maio = pd.read_excel("Registros Uber.xlsx", sheet_name="Março - abril- Maio")
+març_abril_maio = pd.read_excel("Registros Uber Original.xlsx", sheet_name="Março - abril- Maio")
 
-jun_jul_agost = pd.read_excel("Registros Uber.xlsx",sheet_name="Jun- jul- Agosto")
+jun_jul_agost = pd.read_excel("Registros Uber Original.xlsx",sheet_name="Jun- jul- Agosto")
 
 
 
@@ -215,5 +215,6 @@ with tab3:
 
         else:
             st.warning("Ops...Nenhum Colaborador encontrado")
+
 
     
