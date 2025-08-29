@@ -196,14 +196,14 @@ with tab3:
                     st.caption("Total no Período")
 
                 with col2:
-                    st.metric("Solicitações", qtd_solicitacoes)
+                    st.metric("Solicitações", qtd_solicitacoes_individuais)
                     st.caption("Quantidade de Solicitações")
                 
                 with col3:
                     st.metric("📅Gasto Médio Diário", formatar_reais(gasto_diario_medio))
                     st.caption(f"Em {dias_com_gasto} dias com gasto")
                 with col4:
-                    st.metric("📊Gasto Médio Diário",formatar_reais(gasto_mensal_medio))
+                    st.metric("📊Gasto Médio Mensal",formatar_reais(gasto_mensal_medio))
                     st.caption(f"Período de {dias_periodo} dias")
 
 
@@ -218,3 +218,4 @@ with tab3:
 
 
     
+
